@@ -1,5 +1,5 @@
-hash: 710eb152ed998ed2cc0169b508f6849dc03da7ee2ab344ca5c1f5cee340e4985
-updated: 2018-10-09T18:04:25.235127-04:00
+hash: da520eb489c699f8874b6d9775c42f25506f9745276bef9f07e411458ad1be18
+updated: 2018-10-11T16:51:28.764028055-04:00
 imports:
 - name: github.com/apache/thrift
   version: c2fb1c4e8c931d22617bebb0bf388cb4d5e6fcff
@@ -372,9 +372,10 @@ imports:
 - name: github.com/oklog/ulid
   version: 66bb6560562feca7045b23db1ae85b01260f87c5
 - name: github.com/opentracing/opentracing-go
-  version: 855519783f479520497c6b3445611b05fc42f009
+  version: 1949ddbfd147afd4d964a9f00b24eb291e0e7c38
   subpackages:
   - ext
+  - log
 - name: github.com/pborman/getopt
   version: ec82d864f599c39673eef89f91b93fa5576567a1
 - name: github.com/pborman/uuid

@@ -72,16 +72,16 @@ func (mr *MockdatabaseBufferMockRecorder) Write(ctx, timestamp, value, unit, ann
 }
 
 // Snapshot mocks base method
-func (m *MockdatabaseBuffer) Snapshot(ctx context.Context, blockStart time.Time) (xio.SegmentReader, error) {
-	ret := m.ctrl.Call(m, "Snapshot", ctx, blockStart)
+func (m *MockdatabaseBuffer) Snapshot(ctx context.Context, mType metricType, blockStart time.Time) (xio.SegmentReader, error) {
+	ret := m.ctrl.Call(m, "Snapshot", ctx, mType, blockStart)
 	ret0, _ := ret[0].(xio.SegmentReader)
 	ret1, _ := ret[1].(error)
 	return ret0, ret1
 }
 
 // Snapshot indicates an expected call of Snapshot
-func (mr *MockdatabaseBufferMockRecorder) Snapshot(ctx, blockStart interface{}) *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Snapshot", reflect.TypeOf((*MockdatabaseBuffer)(nil).Snapshot), ctx, blockStart)
+func (mr *MockdatabaseBufferMockRecorder) Snapshot(ctx, mType, blockStart interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Snapshot", reflect.TypeOf((*MockdatabaseBuffer)(nil).Snapshot), ctx, mType, blockStart)
 }
 
 // ReadEncoded mocks base method
@@ -170,35 +170,9 @@ func (mr *MockdatabaseBufferMockRecorder) Tick() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Tick", reflect.TypeOf((*MockdatabaseBuffer)(nil).Tick))
 }
 
-// NeedsDrain mocks base method
-func (m *MockdatabaseBuffer) NeedsDrain() bool {
-	ret := m.ctrl.Call(m, "NeedsDrain")
-	ret0, _ := ret[0].(bool)
-	return ret0
-}
-
-// NeedsDrain indicates an expected call of NeedsDrain
-func (mr *MockdatabaseBufferMockRecorder) NeedsDrain() *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "NeedsDrain", reflect.TypeOf((*MockdatabaseBuffer)(nil).NeedsDrain))
-}
-
-// DrainAndReset mocks base method
-func (m *MockdatabaseBuffer) DrainAndReset() drainAndResetResult {
-	ret := m.ctrl.Call(m, "DrainAndReset")
-	ret0, _ := ret[0].(drainAndResetResult)
-	return ret0
-}
-
-// DrainAndReset indicates an expected call of DrainAndReset
-func (mr *MockdatabaseBufferMockRecorder) DrainAndReset() *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "DrainAndReset", reflect.TypeOf((*MockdatabaseBuffer)(nil).DrainAndReset))
-}
-
 // Bootstrap mocks base method
-func (m *MockdatabaseBuffer) Bootstrap(bl block.DatabaseBlock) error {
-	ret := m.ctrl.Call(m, "Bootstrap", bl)
-	ret0, _ := ret[0].(error)
-	return ret0
+func (m *MockdatabaseBuffer) Bootstrap(bl block.DatabaseBlock) {
+	m.ctrl.Call(m, "Bootstrap", bl)
 }
 
 // Bootstrap indicates an expected call of Bootstrap

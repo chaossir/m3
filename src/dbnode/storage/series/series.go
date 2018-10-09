@@ -96,7 +96,7 @@ func newDatabaseSeries() *dbSeries {
 		blocks: block.NewDatabaseSeriesBlocks(0),
 		bs:     bootstrapNotStarted,
 	}
-	series.buffer = newDatabaseBuffer(series.bufferDrained)
+	series.buffer = newDatabaseBuffer()
 	return series
 }
 
@@ -413,25 +413,6 @@ func (s *dbSeries) FetchBlocksMetadata(
 	return block.NewFetchBlocksMetadataResult(s.id, tagsIter, res), nil
 }
 
-func (s *dbSeries) bufferDrained(newBlock block.DatabaseBlock) {
-	// NB(r): by the very nature of this method executing we have the
-	// lock already. Executing the drain method occurs during a write if the
-	// buffer needs to drain or if tick is called and series explicitly asks
-	// the buffer to drain ready buckets.
-	iOpts := s.opts.InstrumentOptions()
-	err := s.mergeBlockWithLock(newBlock)
-	if err != nil {
-		iOpts.Logger().WithFields(
-			xlog.NewField("id", s.id.String()),
-			xlog.NewField("blockStart", newBlock.StartTime()),
-			xlog.NewField("err", err.Error()),
-		).Errorf("error trying to drain series buffer")
-		// Allocating metric here is ok because this code-path should never
-		// happen anyways.
-		iOpts.MetricsScope().SubScope("series-buffer-drain").Counter("error").Inc(1)
-	}
-}
-
 func (s *dbSeries) mergeBlockWithLock(newBlock block.DatabaseBlock) error {
 	blockStart := newBlock.StartTime()
 
@@ -473,9 +454,6 @@ func (s *dbSeries) Bootstrap(bootstrappedBlocks block.DatabaseSeriesBlocks) (Boo
 		return result, nil
 	}
 
-	// Request the in-memory buffer to drain and reset so that the start times
-	// of the blocks in the buckets are set to the latest valid times
-	s.buffer.DrainAndReset()
 	min, _, err := s.buffer.MinMax()
 	if err != nil {
 		return result, err
@@ -489,9 +467,7 @@ func (s *dbSeries) Bootstrap(bootstrappedBlocks block.DatabaseSeriesBlocks) (Boo
 		// If there is a writable, undrained series buffer bucket then store the block
 		// there and it will be merged / drained as part of the usual lifecycle.
 		if !t.Before(min) {
-			if err := s.buffer.Bootstrap(block); err != nil {
-				multiErr = multiErr.Add(s.newBootstrapBlockError(block, err))
-			}
+			s.buffer.Bootstrap(block)
 			result.NumBlocksMovedToBuffer++
 			continue
 		}
@@ -698,7 +674,9 @@ func (s *dbSeries) Snapshot(
 	} else {
 		// If the data hasn't been rotated into an immutable block yet,
 		// then it may be in the series buffer (because its still mutable).
-		stream, err = s.buffer.Snapshot(ctx, blockStart)
+		// We currently only snapshot realtime metrics. Out of order writes
+		// will get merged and compacted directly into a data file every tick.
+		stream, err = s.buffer.Snapshot(ctx, realtimeType, blockStart)
 	}
 
 	if err != nil {

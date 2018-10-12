@@ -62,8 +62,8 @@ type options struct {
 	blockSize                        time.Duration
 	bufferFuture                     time.Duration
 	bufferPast                       time.Duration
-	dataExpiry                       bool
 	dataExpiryAfterNotAccessedPeriod time.Duration
+	dataExpiry                       bool
 	outOfOrderWritesEnabled          bool
 }
 

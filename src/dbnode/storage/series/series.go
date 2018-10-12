@@ -454,39 +454,13 @@ func (s *dbSeries) Bootstrap(bootstrappedBlocks block.DatabaseSeriesBlocks) (Boo
 		return result, nil
 	}
 
-	min, _, err := s.buffer.MinMax()
-	if err != nil {
-		return result, err
-	}
-
-	var (
-		multiErr = xerrors.NewMultiError()
-	)
-	for tNano, block := range bootstrappedBlocks.AllBlocks() {
-		t := tNano.ToTime()
-		// If there is a writable, undrained series buffer bucket then store the block
-		// there and it will be merged / drained as part of the usual lifecycle.
-		if !t.Before(min) {
-			s.buffer.Bootstrap(block)
-			result.NumBlocksMovedToBuffer++
-			continue
-		}
-
-		// If we're unable to put the blocks in an active series buffer bucket, then store them
-		// in the series block, merging with any existing blocks if necessary. There could be an
-		// existing block in the situation that currentTime > blockStart.Add(blockSize).Add(bufferPast),
-		// in which case the series buffer buckets may have been drained and rotated into a block, but
-		// still exist in memory because a flush hasn't occurred yet (we guarantee this by not allowing flushes
-		// until we're bootstrapped.)
-		err := s.mergeBlockWithLock(block)
-		if err != nil {
-			multiErr = multiErr.Add(s.newBootstrapBlockError(block, err))
-		}
-		result.NumBlocksMerged++
+	for _, block := range bootstrappedBlocks.AllBlocks() {
+		s.buffer.Bootstrap(block)
+		result.NumBlocksMovedToBuffer++
 	}
 
 	s.bs = bootstrapped
-	return result, multiErr.FinalError()
+	return result, nil
 }
 
 func (s *dbSeries) OnRetrieveBlock(
@@ -618,33 +592,7 @@ func (s *dbSeries) Flush(
 		return FlushOutcomeErr, errSeriesNotBootstrapped
 	}
 
-	b, exists := s.blocks.BlockAt(blockStart)
-	if !exists {
-		return FlushOutcomeBlockDoesNotExist, nil
-	}
-
-	br, err := b.Stream(ctx)
-	if err != nil {
-		return FlushOutcomeErr, err
-	}
-	if br.IsEmpty() {
-		return FlushOutcomeErr, errStreamDidNotExistForBlock
-	}
-	segment, err := br.Segment()
-	if err != nil {
-		return FlushOutcomeErr, err
-	}
-
-	checksum, err := b.Checksum()
-	if err != nil {
-		return FlushOutcomeErr, err
-	}
-	err = persistFn(s.id, s.tags, segment, checksum)
-	if err != nil {
-		return FlushOutcomeErr, err
-	}
-
-	return FlushOutcomeFlushedToDisk, nil
+	return s.buffer.Flush(ctx, blockStart, s.id, s.tags, persistFn)
 }
 
 func (s *dbSeries) Snapshot(
@@ -665,19 +613,8 @@ func (s *dbSeries) Snapshot(
 		stream xio.SegmentReader
 		err    error
 	)
-	block, ok := s.blocks.BlockAt(blockStart)
-	if ok {
-		// First check if the data has already been rotated out of the buffer
-		// into an immutable block. If it has, there is no need to check the
-		// series buffer as the data can't be in both locations.
-		stream, err = block.Stream(ctx)
-	} else {
-		// If the data hasn't been rotated into an immutable block yet,
-		// then it may be in the series buffer (because its still mutable).
-		// We currently only snapshot realtime metrics. Out of order writes
-		// will get merged and compacted directly into a data file every tick.
-		stream, err = s.buffer.Snapshot(ctx, realtimeType, blockStart)
-	}
+
+	stream, err = s.buffer.Snapshot(ctx, realtimeType, blockStart)
 
 	if err != nil {
 		return err

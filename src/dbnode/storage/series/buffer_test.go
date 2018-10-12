@@ -193,50 +193,6 @@ func TestBufferReadOnlyMatchingBuckets(t *testing.T) {
 	assertValuesEqual(t, []value{data[1]}, results, opts)
 }
 
-func TestBufferMinMax(t *testing.T) {
-	var (
-		opts      = newBufferTestOptions()
-		rops      = opts.RetentionOptions()
-		blockSize = rops.BlockSize()
-		start     = time.Now().Truncate(rops.BlockSize())
-		curr      = start
-		buffer    = newDatabaseBuffer().(*dbBuffer)
-	)
-
-	opts = opts.SetClockOptions(opts.ClockOptions().SetNowFn(func() time.Time {
-		return curr
-	}))
-	buffer.Reset(opts)
-
-	// Verify standard behavior of MinMax()
-	min, max, err := buffer.MinMax()
-	require.NoError(t, err)
-	require.Equal(t, time.Time{}, min)
-	require.Equal(t, time.Time{}, max)
-
-	data := []value{
-		{start, 1, xtime.Second, nil},
-		{start.Add(mins(0.5)), 2, xtime.Second, nil},
-		{start.Add(mins(1.0)), 3, xtime.Second, nil},
-		{start.Add(mins(1.5)), 4, xtime.Second, nil},
-		{start.Add(mins(2.0)), 5, xtime.Second, nil},
-		{start.Add(mins(2.5)), 6, xtime.Second, nil},
-	}
-	for _, v := range data {
-		curr = v.timestamp
-		ctx := context.NewContext()
-		assert.NoError(t, buffer.Write(ctx, v.timestamp, v.value, v.unit, v.annotation))
-		ctx.Close()
-	}
-
-	min, max, err = buffer.MinMax()
-	require.NoError(t, err)
-	expectedMin := start
-	expectedMax := start.Add(blockSize)
-	require.Equal(t, expectedMin, min)
-	require.Equal(t, expectedMax, max)
-}
-
 func TestBufferWriteOutOfOrder(t *testing.T) {
 	opts := newBufferTestOptions()
 	rops := opts.RetentionOptions()

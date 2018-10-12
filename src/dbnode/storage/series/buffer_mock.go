@@ -28,9 +28,11 @@ import (
 	"reflect"
 	"time"
 
+	"github.com/m3db/m3/src/dbnode/persist"
 	"github.com/m3db/m3/src/dbnode/storage/block"
 	"github.com/m3db/m3/src/dbnode/x/xio"
 	"github.com/m3db/m3x/context"
+	"github.com/m3db/m3x/ident"
 	time0 "github.com/m3db/m3x/time"
 
 	"github.com/golang/mock/gomock"
@@ -144,20 +146,6 @@ func (mr *MockdatabaseBufferMockRecorder) Stats() *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Stats", reflect.TypeOf((*MockdatabaseBuffer)(nil).Stats))
 }
 
-// MinMax mocks base method
-func (m *MockdatabaseBuffer) MinMax() (time.Time, time.Time, error) {
-	ret := m.ctrl.Call(m, "MinMax")
-	ret0, _ := ret[0].(time.Time)
-	ret1, _ := ret[1].(time.Time)
-	ret2, _ := ret[2].(error)
-	return ret0, ret1, ret2
-}
-
-// MinMax indicates an expected call of MinMax
-func (mr *MockdatabaseBufferMockRecorder) MinMax() *gomock.Call {
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "MinMax", reflect.TypeOf((*MockdatabaseBuffer)(nil).MinMax))
-}
-
 // Tick mocks base method
 func (m *MockdatabaseBuffer) Tick() bufferTickResult {
 	ret := m.ctrl.Call(m, "Tick")
@@ -188,4 +176,30 @@ func (m *MockdatabaseBuffer) Reset(opts Options) {
 // Reset indicates an expected call of Reset
 func (mr *MockdatabaseBufferMockRecorder) Reset(opts interface{}) *gomock.Call {
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Reset", reflect.TypeOf((*MockdatabaseBuffer)(nil).Reset), opts)
+}
+
+// Stream mocks base method
+func (m *MockdatabaseBuffer) Stream(ctx context.Context, mType metricType, blockStart time.Time) (xio.BlockReader, error) {
+	ret := m.ctrl.Call(m, "Stream", ctx, mType, blockStart)
+	ret0, _ := ret[0].(xio.BlockReader)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Stream indicates an expected call of Stream
+func (mr *MockdatabaseBufferMockRecorder) Stream(ctx, mType, blockStart interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Stream", reflect.TypeOf((*MockdatabaseBuffer)(nil).Stream), ctx, mType, blockStart)
+}
+
+// Flush mocks base method
+func (m *MockdatabaseBuffer) Flush(ctx context.Context, blockStart time.Time, id ident.ID, tags ident.Tags, persistFn persist.DataFn) (FlushOutcome, error) {
+	ret := m.ctrl.Call(m, "Flush", ctx, blockStart, id, tags, persistFn)
+	ret0, _ := ret[0].(FlushOutcome)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Flush indicates an expected call of Flush
+func (mr *MockdatabaseBufferMockRecorder) Flush(ctx, blockStart, id, tags, persistFn interface{}) *gomock.Call {
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Flush", reflect.TypeOf((*MockdatabaseBuffer)(nil).Flush), ctx, blockStart, id, tags, persistFn)
 }

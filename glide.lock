@@ -1,5 +1,5 @@
-hash: 710eb152ed998ed2cc0169b508f6849dc03da7ee2ab344ca5c1f5cee340e4985
-updated: 2018-10-09T18:04:25.235127-04:00
+hash: dd1cc1dfac3fbf2c8fc84e8d43a452db922a26b54a93c42297cbd874c5deb676
+updated: 2018-10-12T13:39:37.406204-04:00
 imports:
 - name: github.com/apache/thrift
   version: c2fb1c4e8c931d22617bebb0bf388cb4d5e6fcff
@@ -179,7 +179,7 @@ imports:
 - name: github.com/google/uuid
   version: 9b3b1e0f5f99ae461456d768e7d301a7acdaa2d8
 - name: github.com/gorilla/context
-  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+  version: 51ce91d2eaddeca0ef29a71d766bb3634dadf729
 - name: github.com/gorilla/mux
   version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
@@ -218,11 +218,6 @@ imports:
   version: 07973db6b78acb62ac207d0538055e874b49d90d
 - name: github.com/m3db/bloom
   version: 47fe1193cdb900de7193d1f3d26ea9b2cbf6fb31
-- name: github.com/m3db/m3aggregator
-  version: 6f59918fe3791a3df0dc146ea492593925809c3e
-  subpackages:
-  - client
-  - sharding
 - name: github.com/m3db/m3cluster
   version: b3db8dcb85c34fbd02a7721f6c0639d6e96c6fbe
   subpackages:
@@ -292,16 +287,6 @@ imports:
   - x/bytes
 - name: github.com/m3db/m3msg
   version: bb2c675f58f01d487fc0a64aa6c864bc1cc541c9
-  subpackages:
-  - consumer
-  - generated/proto/msgpb
-  - generated/proto/topicpb
-  - producer
-  - producer/buffer
-  - producer/config
-  - producer/writer
-  - protocol/proto
-  - topic
 - name: github.com/m3db/m3x
   version: fc5c28bb09dfe6ba7f79e897021d9b186b5fffc5
   vcs: git

@@ -26,7 +26,7 @@ package admin
 import proto "github.com/gogo/protobuf/proto"
 import fmt "fmt"
 import math "math"
-import topicpb "github.com/m3db/m3msg/generated/proto/topicpb"
+import topicpb "github.com/m3db/m3/src/msg/generated/proto/topicpb"
 
 import io "io"
 

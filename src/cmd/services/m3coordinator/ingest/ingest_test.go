@@ -32,7 +32,7 @@ import (
 	"github.com/m3db/m3/src/query/ts"
 	"github.com/m3db/m3/src/x/serialize"
 	"github.com/m3db/m3metrics/policy"
-	"github.com/m3db/m3msg/consumer"
+	"github.com/m3db/m3/src/msg/consumer"
 	"github.com/m3db/m3x/ident"
 	"github.com/m3db/m3x/instrument"
 	"github.com/m3db/m3x/pool"

@@ -33,8 +33,8 @@ import (
 	"github.com/m3db/m3cluster/placement"
 	"github.com/m3db/m3cluster/services"
 	"github.com/m3db/m3cluster/shard"
-	"github.com/m3db/m3msg/producer"
-	"github.com/m3db/m3msg/topic"
+	"github.com/m3db/m3/src/msg/producer"
+	"github.com/m3db/m3/src/msg/topic"
 
 	"github.com/fortytw2/leaktest"
 	"github.com/golang/mock/gomock"

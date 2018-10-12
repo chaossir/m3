@@ -30,8 +30,8 @@ import (
 
 	"github.com/m3db/m3/src/cmd/services/m3query/config"
 	"github.com/m3db/m3/src/query/generated/proto/admin"
-	"github.com/m3db/m3msg/generated/proto/topicpb"
-	"github.com/m3db/m3msg/topic"
+	"github.com/m3db/m3/src/msg/generated/proto/topicpb"
+	"github.com/m3db/m3/src/msg/topic"
 
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"

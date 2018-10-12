@@ -26,8 +26,8 @@ import (
 	"sync"
 
 	"github.com/m3db/m3cluster/services"
-	"github.com/m3db/m3msg/producer"
-	"github.com/m3db/m3msg/topic"
+	"github.com/m3db/m3/src/msg/producer"
+	"github.com/m3db/m3/src/msg/topic"
 	xerrors "github.com/m3db/m3x/errors"
 	"github.com/m3db/m3x/log"
 	"github.com/m3db/m3x/watch"

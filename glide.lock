@@ -1,5 +1,5 @@
-hash: dd1cc1dfac3fbf2c8fc84e8d43a452db922a26b54a93c42297cbd874c5deb676
-updated: 2018-10-12T13:39:37.406204-04:00
+hash: 5445e0635c9ad90e91287f0e591848dfe202d9ac2023f0eaa11c8925f3065ae7
+updated: 2018-10-12T15:11:16.342847-04:00
 imports:
 - name: github.com/apache/thrift
   version: c2fb1c4e8c931d22617bebb0bf388cb4d5e6fcff
@@ -179,7 +179,7 @@ imports:
 - name: github.com/google/uuid
   version: 9b3b1e0f5f99ae461456d768e7d301a7acdaa2d8
 - name: github.com/gorilla/context
-  version: 51ce91d2eaddeca0ef29a71d766bb3634dadf729
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/mux
   version: e3702bed27f0d39777b0b37b664b6280e8ef8fbf
 - name: github.com/grpc-ecosystem/go-grpc-prometheus
@@ -285,8 +285,6 @@ imports:
   - rules/view/changes
   - transformation
   - x/bytes
-- name: github.com/m3db/m3msg
-  version: bb2c675f58f01d487fc0a64aa6c864bc1cc541c9
 - name: github.com/m3db/m3x
   version: fc5c28bb09dfe6ba7f79e897021d9b186b5fffc5
   vcs: git

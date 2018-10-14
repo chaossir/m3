@@ -32,8 +32,8 @@ import (
 
 	"github.com/m3db/m3/src/aggregator/aggregation"
 	aggclient "github.com/m3db/m3/src/aggregator/client"
-	"github.com/m3db/m3cluster/kv/mem"
-	"github.com/m3db/m3cluster/placement"
+	"github.com/m3db/m3/src/cluster/kv/mem"
+	"github.com/m3db/m3/src/cluster/placement"
 	maggregation "github.com/m3db/m3metrics/aggregation"
 	"github.com/m3db/m3metrics/metadata"
 	"github.com/m3db/m3metrics/metric"

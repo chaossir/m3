@@ -27,13 +27,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/m3db/m3/src/cluster/generated/proto/kvtest"
+	"github.com/m3db/m3/src/cluster/kv"
+	"github.com/m3db/m3/src/cluster/mocks"
+
 	"github.com/coreos/etcd/clientv3"
 	"github.com/coreos/etcd/integration"
 	"github.com/golang/protobuf/proto"
-	"github.com/m3db/m3cluster/generated/proto/kvtest"
-	"github.com/m3db/m3cluster/kv"
-	"github.com/m3db/m3cluster/mocks"
-
 	"github.com/stretchr/testify/require"
 	"golang.org/x/net/context"
 )

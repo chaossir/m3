@@ -50,6 +50,7 @@ SERVICES :=     \
 
 SUBDIRS :=    \
 	x           \
+	cluster     \
 	msg         \
 	cmd         \
 	collector   \

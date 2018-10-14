@@ -15,13 +15,6 @@ import:
       - watch
       - ident
 
-  - package: github.com/m3db/m3cluster
-    version: b3db8dcb85c34fbd02a7721f6c0639d6e96c6fbe
-    subpackages:
-      - client
-      - services
-      - integration/etcd
-
   - package: github.com/m3db/m3metrics
     version: 5c6aed344a0c209277d36334f0a824d9f3bb835b
 

@@ -1,5 +1,5 @@
-hash: 5445e0635c9ad90e91287f0e591848dfe202d9ac2023f0eaa11c8925f3065ae7
-updated: 2018-10-12T22:38:36.910278-04:00
+hash: 6f5b83b280c374ef360137a6827d1e65ea616dac53af32278d64b041416e9d21
+updated: 2018-10-13T21:43:53.432953-04:00
 imports:
 - name: github.com/apache/thrift
   version: c2fb1c4e8c931d22617bebb0bf388cb4d5e6fcff
@@ -215,19 +215,13 @@ imports:
 - name: github.com/m3db/bloom
   version: 47fe1193cdb900de7193d1f3d26ea9b2cbf6fb31
 - name: github.com/m3db/m3cluster
-  version: b3db8dcb85c34fbd02a7721f6c0639d6e96c6fbe
+  version: 829d4ae9ed79c90f32122cb32464312aed39686d
   subpackages:
   - client
-  - client/etcd
-  - etcd/watchmanager
-  - generated/proto/commonpb
   - generated/proto/metadatapb
   - generated/proto/placementpb
-  - integration/etcd
   - kv
-  - kv/etcd
   - kv/mem
-  - kv/util
   - kv/util/runtime
   - placement
   - placement/algo
@@ -235,10 +229,7 @@ imports:
   - placement/service
   - placement/storage
   - services
-  - services/heartbeat/etcd
-  - services/leader
   - services/leader/campaign
-  - services/leader/election
   - shard
 - name: github.com/m3db/m3ctl
   version: acc762bfdd42ecb192d34e48fa7ca1fd7ee088ac
@@ -379,7 +370,7 @@ imports:
   subpackages:
   - prometheus
 - name: github.com/prometheus/client_model
-  version: fa8ad6fec33561be4280a8f0514318c79d7f6cb6
+  version: 6f3806018612930941127f2a7c6c453ba2c527d2
   subpackages:
   - go
 - name: github.com/prometheus/common
@@ -492,9 +483,7 @@ imports:
   - internal/exit
   - zapcore
 - name: golang.org/x/crypto
-  version: 1351f936d976c60a0a48d728281922cf63eafb8d
-  repo: https://github.com/golang/crypto
-  vcs: git
+  version: 9419663f5a44be8b34ca85f08abc5fe1be11f8a3
   subpackages:
   - bcrypt
   - blowfish
@@ -520,9 +509,7 @@ imports:
   subpackages:
   - errgroup
 - name: golang.org/x/sys
-  version: d4feaf1a7e61e1d9e79e6c4e76c6349e9cab0a03
-  repo: https://github.com/golang/sys
-  vcs: git
+  version: e48874b42435b4347fc52bdee0424a52abc974d7
   subpackages:
   - unix
 - name: golang.org/x/text
@@ -533,9 +520,7 @@ imports:
   - unicode/bidi
   - unicode/norm
 - name: golang.org/x/time
-  version: a4bde12657593d5e90d0533a3e4fd95e635124cb
-  repo: https://github.com/golang/time
-  vcs: git
+  version: c06e80d9300e4443158a03817b8a8cb37d230320
   subpackages:
   - rate
 - name: google.golang.org/appengine
@@ -555,7 +540,7 @@ imports:
   - googleapis/api/annotations
   - googleapis/rpc/status
 - name: google.golang.org/grpc
-  version: 401e0e00e4bb830a10496d64cd95e068c5bf50de
+  version: 5b3c4e850e90a4cf6a20ebd46c8b32a0a3afcb9e
   subpackages:
   - balancer
   - codes

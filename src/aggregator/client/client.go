@@ -28,8 +28,8 @@ import (
 	"time"
 
 	"github.com/m3db/m3/src/aggregator/sharding"
-	"github.com/m3db/m3cluster/placement"
-	"github.com/m3db/m3cluster/shard"
+	"github.com/m3db/m3/src/cluster/placement"
+	"github.com/m3db/m3/src/cluster/shard"
 	"github.com/m3db/m3metrics/metadata"
 	"github.com/m3db/m3metrics/metric/aggregated"
 	"github.com/m3db/m3metrics/metric/id"

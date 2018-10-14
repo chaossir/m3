@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/m3db/m3cluster/kv/mem"
+	"github.com/m3db/m3/src/cluster/kv/mem"
 	"github.com/m3db/m3metrics/aggregation"
 	"github.com/m3db/m3metrics/metadata"
 	"github.com/m3db/m3metrics/metric/id"

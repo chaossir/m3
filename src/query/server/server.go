@@ -31,6 +31,8 @@ import (
 	"syscall"
 	"time"
 
+	clusterclient "github.com/m3db/m3/src/cluster/client"
+	etcdclient "github.com/m3db/m3/src/cluster/client/etcd"
 	"github.com/m3db/m3/src/cmd/services/m3coordinator/downsample"
 	dbconfig "github.com/m3db/m3/src/cmd/services/m3dbnode/config"
 	"github.com/m3db/m3/src/cmd/services/m3query/config"
@@ -49,8 +51,6 @@ import (
 	tsdbRemote "github.com/m3db/m3/src/query/tsdb/remote"
 	"github.com/m3db/m3/src/query/util/logging"
 	"github.com/m3db/m3/src/x/serialize"
-	clusterclient "github.com/m3db/m3cluster/client"
-	etcdclient "github.com/m3db/m3cluster/client/etcd"
 	"github.com/m3db/m3metrics/aggregation"
 	"github.com/m3db/m3metrics/policy"
 	"github.com/m3db/m3x/clock"

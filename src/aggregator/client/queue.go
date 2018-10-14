@@ -27,7 +27,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/m3db/m3cluster/placement"
+	"github.com/m3db/m3/src/cluster/placement"
 	"github.com/m3db/m3metrics/encoding/protobuf"
 	"github.com/m3db/m3x/log"
 

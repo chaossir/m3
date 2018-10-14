@@ -25,11 +25,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/m3db/m3/src/cluster/kv/mem"
 	"github.com/m3db/m3/src/query/models"
 	"github.com/m3db/m3/src/query/storage"
 	"github.com/m3db/m3/src/query/storage/mock"
 	"github.com/m3db/m3/src/x/serialize"
-	"github.com/m3db/m3cluster/kv/mem"
 	"github.com/m3db/m3ctl/service/r2/store"
 	r2kv "github.com/m3db/m3ctl/service/r2/store/kv"
 	"github.com/m3db/m3metrics/aggregation"

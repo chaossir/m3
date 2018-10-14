@@ -29,8 +29,8 @@ import (
 	"time"
 
 	aggclient "github.com/m3db/m3/src/aggregator/client"
+	"github.com/m3db/m3/src/cluster/kv"
 	aggserver "github.com/m3db/m3/src/collector/integration/server"
-	"github.com/m3db/m3cluster/kv"
 	"github.com/m3db/m3metrics/encoding/protobuf"
 	"github.com/m3db/m3metrics/matcher"
 	"github.com/m3db/m3metrics/metadata"

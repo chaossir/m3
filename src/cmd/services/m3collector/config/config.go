@@ -22,7 +22,7 @@ package config
 
 import (
 	"github.com/m3db/m3/src/aggregator/client"
-	etcdclient "github.com/m3db/m3cluster/client/etcd"
+	etcdclient "github.com/m3db/m3/src/cluster/client/etcd"
 	"github.com/m3db/m3metrics/matcher"
 	"github.com/m3db/m3metrics/matcher/cache"
 	"github.com/m3db/m3x/clock"

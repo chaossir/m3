@@ -24,9 +24,9 @@ import (
 	"time"
 
 	"github.com/m3db/m3/src/aggregator/sharding"
-	m3clusterclient "github.com/m3db/m3cluster/client"
-	"github.com/m3db/m3cluster/kv"
-	"github.com/m3db/m3cluster/placement"
+	m3clusterclient "github.com/m3db/m3/src/cluster/client"
+	"github.com/m3db/m3/src/cluster/kv"
+	"github.com/m3db/m3/src/cluster/placement"
 	"github.com/m3db/m3metrics/encoding/protobuf"
 	"github.com/m3db/m3x/clock"
 	"github.com/m3db/m3x/instrument"

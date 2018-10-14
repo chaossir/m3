@@ -26,8 +26,8 @@ import (
 
 	"github.com/m3db/m3/src/aggregator/aggregator/handler/common"
 	"github.com/m3db/m3/src/aggregator/aggregator/handler/router"
-	"github.com/m3db/m3cluster/generated/proto/commonpb"
-	"github.com/m3db/m3cluster/kv/mem"
+	"github.com/m3db/m3/src/cluster/generated/proto/commonpb"
+	"github.com/m3db/m3/src/cluster/kv/mem"
 	"github.com/m3db/m3metrics/encoding/msgpack"
 
 	"github.com/fortytw2/leaktest"

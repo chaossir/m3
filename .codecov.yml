@@ -8,6 +8,8 @@ coverage:
       default: on
       x:
         flags: x
+      cluster:
+        flags: cluster
       msg:
         flags: msg
       aggregator:
@@ -61,6 +63,9 @@ coverage:
     x:
       paths:
         - src/x/
+    cluster:
+      paths:
+        - src/cluster/
     msg:
       paths:
         - src/msg/

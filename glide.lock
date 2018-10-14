@@ -1,5 +1,5 @@
-hash: 5445e0635c9ad90e91287f0e591848dfe202d9ac2023f0eaa11c8925f3065ae7
-updated: 2018-10-12T22:38:36.910278-04:00
+hash: 5a42767a6cfce5b8d44ad181640c132067f0d8f0be92ac3619823db446aec121
+updated: 2018-10-13T22:35:02.439243-04:00
 imports:
 - name: github.com/apache/thrift
   version: c2fb1c4e8c931d22617bebb0bf388cb4d5e6fcff
@@ -248,39 +248,6 @@ imports:
   - service/r2
   - service/r2/store
   - service/r2/store/kv
-- name: github.com/m3db/m3metrics
-  version: 5c6aed344a0c209277d36334f0a824d9f3bb835b
-  subpackages:
-  - aggregation
-  - encoding
-  - encoding/migration
-  - encoding/msgpack
-  - encoding/protobuf
-  - errors
-  - filters
-  - generated/proto/aggregationpb
-  - generated/proto/metricpb
-  - generated/proto/pipelinepb
-  - generated/proto/policypb
-  - generated/proto/rulepb
-  - generated/proto/transformationpb
-  - matcher
-  - matcher/cache
-  - metadata
-  - metric
-  - metric/aggregated
-  - metric/id
-  - metric/id/m3
-  - metric/unaggregated
-  - pipeline
-  - pipeline/applied
-  - policy
-  - rules
-  - rules/store/kv
-  - rules/view
-  - rules/view/changes
-  - transformation
-  - x/bytes
 - name: github.com/m3db/m3x
   version: fc5c28bb09dfe6ba7f79e897021d9b186b5fffc5
   vcs: git
@@ -607,3 +574,26 @@ testImports:
   - currency
 - name: github.com/go-playground/universal-translator
   version: 71201497bace774495daed26a3874fd339e0b538
+- name: github.com/m3db/m3metrics
+  version: 33eb82b45206ee5c22a53ae9aaf4ea8385ae70ff
+  subpackages:
+  - aggregation
+  - errors
+  - filters
+  - generated/proto/aggregationpb
+  - generated/proto/metricpb
+  - generated/proto/pipelinepb
+  - generated/proto/policypb
+  - generated/proto/rulepb
+  - generated/proto/transformationpb
+  - metadata
+  - metric
+  - metric/id
+  - pipeline
+  - pipeline/applied
+  - policy
+  - rules
+  - rules/view
+  - rules/view/changes
+  - transformation
+  - x/bytes
